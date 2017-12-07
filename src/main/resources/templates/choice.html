@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+<title>All music</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+
+<link
+	href="https://fonts.googleapis.com/css?family=Arvo|Source+Code+Pro"
+	rel="stylesheet" />
+</head>
+
+<body style="font-family: 'Arvo', serif;">
+
+	<h1
+		style="font-family: 'Source Code Pro', monospace; padding-left: 10px;"
+		th:inline="text">[[${#httpServletRequest.remoteUser}]], go listen
+		to...</h1>
+
+
+	<div class="col-md-4"
+		style="position: absolute; top: 10px; right: 0; font-family: 'Arvo', serif;">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-basic btn-sm"
+				style="float: right;" />
+		</form>
+	</div>
+
+	<div class="col-md-4"
+		style="position: absolute; top: 50px; right: 0; font-family: 'Arvo', serif;">
+		<form th:action="@{/allmusic}" method="post">
+			<input type="submit" value="Back to all albums"
+				class="btn btn-info btn-sm" style="float: right;" />
+		</form>
+	</div>
+
+	<div class="col-md-4"
+		style="position: absolute; top: 50px; right: 150px; font-family: 'Arvo', serif;">
+		<form th:action="@{/mylist}" method="post">
+			<input type="submit" value="Back to my list"
+				class="btn btn-info btn-sm" style="float: right;" />
+		</form>
+	</div>
+
+	<table class="table table-striped" style="margin-top: 50px;">
+
+		<tr>
+			<th></th>
+			<th>Album</th>
+			<th>Band</th>
+			<th>Year</th>
+			<th>Country</th>
+			<th>Genre</th>
+
+		</tr>
+		<tr th:each="album : ${albums}">
+			<td><img th:src="${album.pic}" height="150px" /></td>
+			<td th:text="${album.title}"></td>
+			<td th:text="${album.band}"></td>
+			<td th:text="${album.year}"></td>
+			<td th:text="${album.country}"></td>
+			<td th:text="${album.genre.name}"></td>
+
+		</tr>
+	</table>
+
+
+</body>
+</html>

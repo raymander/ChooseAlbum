@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<title>Edit album</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+
+<link
+	href="https://fonts.googleapis.com/css?family=Arvo|Source+Code+Pro"
+	rel="stylesheet" />
+</head>
+<body>
+	<h1>Edit album</h1>
+	<div>
+		<form th:object="${album}" th:action="@{../save}" action="#"
+			method="post">
+			<input type="hidden" th:field="*{id}" class="form-control" /> 
+			<input type="text" th:field="*{pic}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="text" th:field="*{title}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="text" th:field="*{band}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="number" th:field="*{year}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="text" th:field="*{country}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<select name="genres" th:field="*{genre}">
+				<option th:each="genre: ${genres}" th:value="${genre.genreid}"
+					th:text="${genre.name}"></option>
+			</select>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" class="btn btn-success" value="Save"></input>
+		</form>
+
+	</div>
+</body>
+</html>
